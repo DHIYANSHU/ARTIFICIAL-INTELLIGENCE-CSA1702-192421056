@@ -1,0 +1,25 @@
+% Facts: planet(Name, Type, Moons).
+planet(mercury, terrestrial, 0).
+planet(venus, terrestrial, 0).
+planet(earth, terrestrial, 1).
+planet(mars, terrestrial, 2).
+planet(jupiter, gas_giant, 79).
+planet(saturn, gas_giant, 82).
+planet(uranus, ice_giant, 27).
+planet(neptune, ice_giant, 14).
+
+% Rule: Find all gas giants.
+is_gas_giant(Name) :-
+    planet(Name, gas_giant, _).
+
+% Rule: Find planets with more than N moons.
+has_many_moons(Name, N) :-
+    planet(Name, _, Moons),
+    Moons > N.
+
+% To query this database:
+% ?- is_gas_giant(X).
+% Expected output: X = jupiter ; X = saturn.
+
+% ?- has_many_moons(Planet, 20).
+% Expected output: Planet = jupiter ; Planet = saturn ; Planet = uranus.
