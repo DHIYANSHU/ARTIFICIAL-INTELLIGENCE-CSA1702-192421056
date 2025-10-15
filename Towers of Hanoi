@@ -1,0 +1,18 @@
+% move(N, Source, Auxiliary, Target)
+% Base case: Move 1 disk from Source to Target.
+hanoi(1, Source, _, Target) :-
+    write('Move disk 1 from '), write(Source), write(' to '), write(Target), nl.
+
+% Recursive step
+hanoi(N, Source, Auxiliary, Target) :-
+    N > 1,
+    % 1. Move N-1 disks from Source to Auxiliary.
+    N1 is N - 1,
+    hanoi(N1, Source, Target, Auxiliary),
+    % 2. Move the Nth disk from Source to Target.
+    write('Move disk '), write(N), write(' from '), write(Source), write(' to '), write(Target), nl,
+    % 3. Move N-1 disks from Auxiliary to Target.
+    hanoi(N1, Auxiliary, Source, Target).
+
+% To run a query:
+% ?- hanoi(3, 'A', 'B', 'C').
