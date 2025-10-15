@@ -1,0 +1,24 @@
+:- dynamic fact/1. % Declare that 'fact' can be asserted at runtime.
+
+% Facts
+fact(a).
+fact(b).
+
+% Rules
+rule(a, c). % If 'a' is a fact, then 'c' is a fact.
+rule(c, d). % If 'c' is a fact, then 'd' is a fact.
+rule(b, e). % If 'b' is a fact, then 'e' is a fact.
+
+% Forward Chaining engine
+forward_chain :-
+    rule(Condition, Consequence),
+    fact(Condition),
+    \+ fact(Consequence), % If the consequence is not already a fact
+    asserta(fact(Consequence)), % Add the new fact
+    write('Derived fact: '), write(Consequence), nl,
+    forward_chain. % Recurse to see if this new fact can derive more.
+forward_chain. % End when no new facts can be derived.
+
+% To run:
+% ?- forward_chain.
+% ?- listing(fact). % To see all facts, initial and derived.
