@@ -1,0 +1,24 @@
+% state(MonkeyHorizontal, MonkeyVertical, BoxPosition, HasBanana)
+% Initial state: monkey at door, on floor, box at window, has not banana.
+% state(at_door, on_floor, at_window, has_not).
+
+% canget(State): can the monkey get the banana in this state?
+canget(state(_, _, _, has)). % Goal: monkey has the banana.
+
+% Recursive rules to find a path to the goal.
+canget(State1) :-
+    move(State1, Action, State2),
+    canget(State2).
+
+% Define possible moves (actions).
+% Action: grasp the banana
+move(state(middle, on_box, middle, has_not), grasp, state(middle, on_box, middle, has)).
+% Action: climb the box
+move(state(P, on_floor, P, H), climb, state(P, on_box, P, H)).
+% Action: push the box
+move(state(P1, on_floor, P1, H), push(P1, P2), state(P2, on_floor, P2, H)).
+% Action: walk
+move(state(P1, on_floor, B, H), walk(P1, P2), state(P2, on_floor, B, H)).
+
+% To find a solution (this requires a planner, but the logic is here).
+% ?- canget(state(at_door, on_floor, at_window, has_not)).
