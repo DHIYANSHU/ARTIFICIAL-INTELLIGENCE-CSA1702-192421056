@@ -1,0 +1,20 @@
+% Facts
+is_a_bird(tweety).
+is_a_penguin(pingu).
+is_a_fish(nemo).
+
+% Rules
+can_fly(X) :- is_a_bird(X), \+ is_a_penguin(X).
+has_feathers(X) :- is_a_bird(X).
+has_feathers(X) :- is_a_penguin(X).
+
+% Query (Goal)
+% ?- can_fly(tweety).
+% How Prolog solves it (backward chaining):
+% 1. Goal: can_fly(tweety).
+% 2. Match rule: can_fly(X).  X = tweety.
+% 3. New Sub-goals: is_a_bird(tweety) AND \+ is_a_penguin(tweety).
+% 4. Solve 'is_a_bird(tweety)'. It's a fact. True.
+% 5. Solve '\+ is_a_penguin(tweety)'. Prolog tries to prove 'is_a_penguin(tweety)'. It fails. So, '\+' succeeds. True.
+% 6. Both sub-goals are true, so the original goal is true.
+% Expected Output: true.
