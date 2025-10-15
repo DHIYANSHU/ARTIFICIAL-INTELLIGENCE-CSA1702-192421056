@@ -1,0 +1,14 @@
+% Facts: dob(Name, date(Day, Month, Year)).
+dob(john, date(15, may, 1995)).
+dob(susan, date(22, nov, 1998)).
+dob(david, date(15, may, 2001)).
+dob(lisa, date(7, jan, 1998)).
+
+% To query this database:
+% Find Susan's date of birth.
+% ?- dob(susan, Date).
+% Expected output: Date = date(22, nov, 1998).
+
+% Find who was born on May 15th.
+% ?- dob(Name, date(15, may, _)).
+% Expected output: Name = john ; Name = david.
