@@ -1,0 +1,14 @@
+% Facts: advise(Disease, Advice).
+advise(diabetes, 'Avoid sugar and refined carbs.').
+advise(hypertension, 'Reduce salt intake and eat more potassium-rich foods.').
+advise(gout, 'Avoid red meat, shellfish, and alcohol.').
+advise(celiac, 'Avoid all foods containing gluten (wheat, barley, rye).').
+
+% Rule: Get a diet suggestion for a person with a disease.
+diet_suggestion(Person, Disease) :-
+    advise(Disease, Advice),
+    format('Advise for ~w with ~w: ~w', [Person, Disease, Advice]).
+
+% To query this system:
+% ?- diet_suggestion('John', hypertension).
+% Expected output: Advise for John with hypertension: Reduce salt intake...
