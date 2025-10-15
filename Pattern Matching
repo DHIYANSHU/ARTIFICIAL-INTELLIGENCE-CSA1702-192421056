@@ -1,0 +1,14 @@
+% Unification examples
+% ?- [a, b, c] = [X, Y, Z].
+% Output: X = a, Y = b, Z = c.
+
+% Using the head/tail pattern to deconstruct a list
+% ?- [Head | Tail] = [1, 2, 3, 4].
+% Output: Head = 1, Tail = [2, 3, 4].
+
+% A rule that uses pattern matching to get the second element of a list.
+second_element([_, X | _], X).
+
+% To query this rule:
+% ?- second_element([apple, banana, cherry], Elem).
+% Output: Elem = banana.
