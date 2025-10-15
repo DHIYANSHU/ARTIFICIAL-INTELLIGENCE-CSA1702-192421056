@@ -1,0 +1,33 @@
+% Facts: male(Name).
+male(john).
+male(bob).
+male(mike).
+
+% Facts: female(Name).
+female(lisa).
+female(susan).
+female(anna).
+
+% Facts: parent(Parent, Child).
+parent(john, bob).
+parent(lisa, bob).
+parent(bob, anna).
+parent(susan, anna).
+parent(bob, mike).
+parent(susan, mike).
+
+% Rules to define more complex relationships.
+father(F, C) :- male(F), parent(F, C).
+mother(M, C) :- female(M), parent(M, C).
+grandfather(GF, C) :- father(GF, P), parent(P, C).
+grandmother(GM, C) :- mother(GM, P), parent(P, C).
+sibling(S1, S2) :- parent(P, S1), parent(P, S2), S1 \= S2. % S1 is not equal to S2
+
+% To query this database:
+% Who is Bob's father?
+% ?- father(F, bob).
+% Expected output: F = john.
+
+% Who are Anna's siblings?
+% ?- sibling(anna, S).
+% Expected output: S = mike.
