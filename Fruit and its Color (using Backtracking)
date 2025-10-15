@@ -1,0 +1,18 @@
+% Facts: fruit_color(Fruit, Color).
+fruit_color(apple, red).
+fruit_color(apple, green).
+fruit_color(banana, yellow).
+fruit_color(grape, purple).
+fruit_color(grape, green).
+fruit_color(orange, orange).
+
+% To query this database:
+% Find a color for apple.
+% ?- fruit_color(apple, Color).
+% Expected output: Color = red ;  (press ';' for more)
+%                  Color = green.
+
+% Find which fruit is green.
+% ?- fruit_color(Fruit, green).
+% Expected output: Fruit = apple ;
+%                  Fruit = grape.
