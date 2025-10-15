@@ -1,0 +1,27 @@
+% Rule: diagnose(Patient, Disease)
+symptom(patient_a, fever).
+symptom(patient_a, cough).
+symptom(patient_a, sore_throat).
+symptom(patient_b, fever).
+symptom(patient_b, headache).
+symptom(patient_c, rash).
+
+% Knowledge Base: disease and its symptoms.
+disease(flu, [fever, cough, headache]).
+disease(common_cold, [cough, sore_throat]).
+disease(measles, [fever, rash]).
+
+% Rule: A person has a disease if they have all its symptoms.
+diagnose(Patient, Disease) :-
+    disease(Disease, Symptoms),
+    has_all_symptoms(Patient, Symptoms).
+
+% Helper rule to check if a patient has a list of symptoms.
+has_all_symptoms(_, []). % Base case: empty list is true.
+has_all_symptoms(Patient, [Symptom|Rest]) :-
+    symptom(Patient, Symptom),
+    has_all_symptoms(Patient, Rest).
+
+% To query this system:
+% ?- diagnose(patient_a, Disease).
+% Expected output: Disease = common_cold.
