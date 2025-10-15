@@ -1,0 +1,15 @@
+31. Create a Web Blog using WordPress
+This is not a programming task in Python or Prolog. It is an instruction to use the WordPress platform to create a blog and demonstrate specific HTML elements.
+
+Steps:
+
+Set up a WordPress site (e.g., on WordPress.com or a self-hosted server).
+
+Create a new post or page.
+
+Use the editor (either Block Editor or Code Editor) to insert:
+
+An Anchor Tag: This is a <a href="https://www.example.com">link</a>.
+
+A Title Tag: The main title of your post/page is typically an <h1> tag. You can add other headings like <h2>, <h3>, etc., which are also title tags.
+
