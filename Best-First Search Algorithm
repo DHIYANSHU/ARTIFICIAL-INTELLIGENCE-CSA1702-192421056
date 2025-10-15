@@ -1,0 +1,14 @@
+% best_first_search(StartNode, SolutionPath).
+% This requires a heuristic function h(Node, Value).
+
+% Simplified structure:
+% search(Paths, Solution).
+% Paths is a list of paths, sorted by heuristic cost.
+% The head of the list is the most promising path.
+
+% search([[Node|Path]|_], [Node|Path]) :- goal(Node).
+% search([[Node|Path]|OtherPaths], Solution) :-
+%    findall([NewNode, Node|Path], (arc(Node, NewNode), \+ member(NewNode, [Node|Path])), Children),
+%    % ... code to evaluate heuristic for Children and sort them ...
+%    append(SortedChildren, OtherPaths, NewPaths),
+%    search(NewPaths, Solution).
