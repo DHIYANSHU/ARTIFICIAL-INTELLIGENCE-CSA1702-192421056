@@ -1,0 +1,24 @@
+is_vowel(a).
+is_vowel(e).
+is_vowel(i).
+is_vowel(o).
+is_vowel(u).
+
+% vowel_count(List, Count)
+% Base case: The vowel count of an empty list is 0.
+vowel_count([], 0).
+
+% Recursive step (Head is a vowel)
+vowel_count([Head|Tail], Count) :-
+    is_vowel(Head),
+    vowel_count(Tail, SubCount),
+    Count is SubCount + 1.
+
+% Recursive step (Head is not a vowel)
+vowel_count([Head|Tail], Count) :-
+    \+ is_vowel(Head),
+    vowel_count(Tail, Count).
+
+% To run a query:
+% ?- vowel_count([p, r, o, l, o, g], N).
+% Expected output: N = 2.
