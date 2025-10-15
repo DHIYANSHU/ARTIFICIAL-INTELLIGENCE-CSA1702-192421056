@@ -1,0 +1,31 @@
+% Facts: student(StudentID, StudentName).
+student(s1, 'Alice').
+student(s2, 'Bob').
+student(s3, 'Charlie').
+
+% Facts: teacher(TeacherID, TeacherName).
+teacher(t1, 'Mr. Smith').
+teacher(t2, 'Ms. Jones').
+
+% Facts: subject(SubjectCode, SubjectName, TeacherID).
+subject(cs101, 'Intro to AI', t1).
+subject(ma202, 'Calculus', t2).
+subject(cs303, 'Prolog Programming', t1).
+
+% Facts: enrollment(StudentID, SubjectCode).
+enrollment(s1, cs101).
+enrollment(s1, ma202).
+enrollment(s2, cs303).
+enrollment(s3, cs101).
+
+% Rule: Find the teacher of a given student for a specific subject.
+teaches_student(TeacherName, StudentName) :-
+    student(SID, StudentName),
+    teacher(TID, TeacherName),
+    enrollment(SID, SubCode),
+    subject(SubCode, _, TID).
+
+% To query this database:
+% Find the teachers who teach Alice.
+% ?- teaches_student(Teacher, 'Alice').
+% Expected output: Teacher = 'Mr. Smith' ; Teacher = 'Ms. Jones'.
